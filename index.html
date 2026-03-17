@@ -1,0 +1,114 @@
+
+    <html>
+    <head>
+        <title>Imperial Command Center</title>
+        <style>
+            body { background-color: #050505; color: gold; font-family: 'Segoe UI', sans-serif; }
+            .terminal { border: 2px solid #333; padding: 30px; margin: 20px; border-radius: 15px; box-shadow: 0 0 30px #111; }
+            h1 { letter-spacing: 5px; text-transform: uppercase; color: #fff; text-shadow: 0 0 10px gold; }
+            .progress-container { background-color: #222; border-radius: 20px; margin: 25px 0; height: 30px; width: 100%; border: 1px solid gold; }
+            .progress-bar { background: linear-gradient(90deg, gold, #ffcc00); height: 100%; border-radius: 20px; width: 0.1472%; transition: width 2s; }
+            .stats { display: flex; justify-content: space-around; font-size: 20px; margin-top: 20px; }
+            .footer { font-size: 10px; color: #444; margin-top: 50px; border-top: 1px solid #222; padding-top: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="terminal">
+            <h1>PIYUSH SAMRAT: MISSION 2027</h1>
+            <p>SYSTEM STATUS: <span style="color:lime;">OPERATIONAL</span> | UPLINK: ACTIVE</p>
+            <hr color="#222">
+            
+            <div class="stats">
+                <div>TARGET: ₹10,000 CR</div>
+                <div>CURRENT: ₹14.72 CR</div>
+            </div>
+
+            
+    <div id="countdown-timer" style="font-size: 25px; color: #ff3300; margin: 20px 0; font-weight: bold; border: 1px dashed #ff3300; padding: 10px;">
+        TIME REMAINING TO 2027 TARGET: <span id="timer"></span>
+    </div>
+
+    <script>
+        var targetDate = new Date("Dec 31, 2027 23:59:59").getTime();
+
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = targetDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = days + "d " + hours + "h " +
+            minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EMPIRE ESTABLISHED";
+            }
+        }, 1000);
+    </script>
+    <p style="margin-top:40px;">EMPIRE GROWTH PROGRESS:</p>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p style="text-align:right; font-weight:bold;">0.1472% ACHIEVED</p>
+
+            
+    <div style="margin-top: 50px; border-top: 2px solid gold; padding-top: 20px;">
+        <h3>📔 EMPIRE STRATEGY JOURNAL</h3>
+        <textarea id="journalInput" style="width: 100%; height: 100px; background: #111; color: lime; border: 1px solid #333; padding: 10px;" placeholder="Enter today's victory..."></textarea>
+        <br><br>
+        <button onclick="saveNote()" style="background: gold; color: black; padding: 10px 20px; font-weight: bold; cursor: pointer;">LOG VICTORY</button>
+    <div style="margin-top: 20px;">
+        <button onclick="exportToPDF()" style="background: #ff3300; color: white; padding: 10px 20px; font-weight: bold; border: none; cursor: pointer; border-radius: 5px;">📤 EXPORT AS PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function exportToPDF() {
+            var element = document.body; // पूरे डैशबोर्ड का PDF बनेगा
+            var opt = {
+              margin:       0.5,
+              filename:     'Empire_Report_2027.pdf',
+              image:        { type: 'jpeg', quality: 0.98 },
+              html2canvas:  { scale: 2 },
+              jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            alert("📡 सम्राट, आपका 'Imperial Report' तैयार किया जा रहा है...");
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+    
+        <div id="logs" style="text-align: left; margin-top: 20px; font-size: 14px; color: #aaa;"></div>
+    </div>
+
+    <script>
+        function saveNote() {
+            var note = document.getElementById('journalInput').value;
+            var time = new Date().toLocaleString();
+            if(note) {
+                var currentLogs = localStorage.getItem('empire_logs') || "";
+                var newLog = "<div><b>[" + time + "]:</b> " + note + "</div>" + currentLogs;
+                localStorage.setItem('empire_logs', newLog);
+                displayLogs();
+                document.getElementById('journalInput').value = "";
+            }
+        }
+        function displayLogs() {
+            document.getElementById('logs').innerHTML = localStorage.getItem('empire_logs') || "No logs yet.";
+        }
+        window.onload = function() {
+            displayLogs();
+            // पुराने टाइमर फंक्शन को यहाँ कॉल करें अगर ज़रूरी हो
+        }
+    </script>
+    <div class="footer">
+                AUTHENTICATED BY IMPERIAL SEAL: 5ABCD4E54871ACD6 | NO EXTERNAL ACCESS GRANTED
+            </div>
+        </div>
+    </body>
+    </html>
+    
