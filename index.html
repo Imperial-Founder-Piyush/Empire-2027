@@ -61,29 +61,47 @@
 var currentWealth = 14.72; // आपकी वर्तमान वैल्यू
 var targetWealth = 10000;  // आपका 2027 का लक्ष्य
 var progressPercent = (currentWealth / targetWealth) * 100;
-// जीत दर्ज करने का फंक्शन
+// जीत दर्ज करने का फंक्शन// 1. पेज लोड होते ही पुरानी जीतें वापस लाने का लॉजिक
+window.addEventListener('load', function() {
+    displayVictories();
+});
+
+// 2. जीत दर्ज करने और LocalStorage में सेव करने का फंक्शन
 function logVictory() {
     var input = document.getElementById('victory-input');
-    var list = document.getElementById('victory-list');
-    
     if (input.value.trim() !== "") {
-        var newVictory = document.createElement('div');
-        newVictory.style.background = "rgba(255, 215, 0, 0.1)";
-        newVictory.style.padding = "10px";
-        newVictory.style.margin = "10px 0";
-        newVictory.style.borderLeft = "5px solid gold";
-        newVictory.style.borderRadius = "3px";
-        newVictory.style.color = "white";
-        newVictory.innerHTML = "<strong>[LOGGED]: </strong>" + input.value;
-        
-        list.appendChild(newVictory);
-        input.value = ""; // बॉक्स खाली करें
+        var victories = JSON.parse(localStorage.getItem('imperial_logs')) || [];
+        var newEntry = {
+            text: input.value,
+            time: new Date().toLocaleString()
+        };
+        victories.push(newEntry);
+        localStorage.setItem('imperial_logs', JSON.stringify(victories));
+        input.value = ""; 
+        displayVictories(); 
     } else {
         alert("सम्राट, पहले अपनी जीत लिखें!");
     }
+}
 
-        
-// अपडेट करने का ऑटोमैटिक लॉजिक
+// 3. स्क्रीन पर जीत दिखाने का फंक्शन
+function displayVictories() {
+    var list = document.getElementById('victory-list');
+    var victories = JSON.parse(localStorage.getItem('imperial_logs')) || [];
+    
+    list.innerHTML = '<h3 style="color: gold; border-bottom: 1px solid #333; padding-bottom: 5px;">Imperial Victory Log</h3>';
+    
+    victories.reverse().forEach(function(item) {
+        var div = document.createElement('div');
+              div.style.background = "rgba(255, 215, 0, 0.1)";
+            div.style.padding = "10px";
+            div.style.margin = "10px 0";
+            div.style.borderLeft = "5px solid gold";
+            div.style.borderRadius = "3px";
+            div.style.color = "white";
+            div.innerHTML = "<small style='color: gray;'>[" + item.time + "]</small><br><strong>> </strong>" + item.text;
+            list.appendChild(div);
+        });
 document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4) + "%";
         
         var targetDate = new Date("Dec 31, 2027 23:59:59").getTime();
