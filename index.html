@@ -10,14 +10,23 @@
             .progress-bar { background: linear-gradient(90deg, gold, #ffcc00); height: 100%; border-radius: 20px; width: 0.1472%; transition: width 2s; }
             .stats { display: flex; justify-content: space-around; font-size: 20px; margin-top: 20px; }
             .footer { font-size: 10px; color: #444; margin-top: 50px; border-top: 1px solid #222; padding-top: 10px; }
-        </style>
+        
     .progress-bar {
         height: 100%;
         background: linear-gradient(90deg, #ffd700, #ffcc00);
         width: 0.1500%; 
         box-shadow: 0 0 15px #ffd700;
         transition: width 2s ease-in-out;
-    }
+  @keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; box-shadow: 0 0 25px #ffd700; }
+    100% { opacity: 0.7; }
+}
+
+.progress-bar {
+    animation: pulse 2s infinite;
+}
+        
     </style>
         
         
