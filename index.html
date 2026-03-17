@@ -47,7 +47,15 @@
         TIME REMAINING TO 2027 TARGET: <span id="timer"></span>
     </div>
 
-    <script>
+    <script>// 
+// Imperial Progress Data
+var currentWealth = 14.72; // आपकी वर्तमान वैल्यू
+var targetWealth = 10000;  // आपका 2027 का लक्ष्य
+var progressPercent = (currentWealth / targetWealth) * 100;
+
+// अपडेट करने का ऑटोमैटिक लॉजिक
+document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4) + "%";
+        
         var targetDate = new Date("Dec 31, 2027 23:59:59").getTime();
 
         var x = setInterval(function() {
