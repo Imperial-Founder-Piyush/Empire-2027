@@ -46,13 +46,43 @@
     <div id="countdown-timer" style="font-size: 25px; color: #ff3300; margin: 20px 0; font-weight: bold; border: 1px dashed #ff3300; padding: 10px;">
         TIME REMAINING TO 2027 TARGET: <span id="timer"></span>
     </div>
+            <div class="victory-input-container" style="margin-top: 30px;">
+    <input type="text" id="victory-input" placeholder="आज की जीत यहाँ लिखें..." style="padding: 10px; width: 65%; border-radius: 5px; border: 1px solid gold; background: #111; color: gold;">
+    <button onclick="logVictory()" style="padding: 10px 15px; background: gold; color: black; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Log Victory</button>
+</div>
+
+<div id="victory-list" style="margin-top: 20px; text-align: left; max-width: 80%; margin-left: auto; margin-right: auto;">
+    <h3 style="color: gold; border-bottom: 1px solid #333; padding-bottom: 5px;">Imperial Victory Log</h3>
+</div>
+            
 
     <script>// 
 // Imperial Progress Data
 var currentWealth = 14.72; // आपकी वर्तमान वैल्यू
 var targetWealth = 10000;  // आपका 2027 का लक्ष्य
 var progressPercent = (currentWealth / targetWealth) * 100;
+// जीत दर्ज करने का फंक्शन
+function logVictory() {
+    var input = document.getElementById('victory-input');
+    var list = document.getElementById('victory-list');
+    
+    if (input.value.trim() !== "") {
+        var newVictory = document.createElement('div');
+        newVictory.style.background = "rgba(255, 215, 0, 0.1)";
+        newVictory.style.padding = "10px";
+        newVictory.style.margin = "10px 0";
+        newVictory.style.borderLeft = "5px solid gold";
+        newVictory.style.borderRadius = "3px";
+        newVictory.style.color = "white";
+        newVictory.innerHTML = "<strong>[LOGGED]: </strong>" + input.value;
+        
+        list.appendChild(newVictory);
+        input.value = ""; // बॉक्स खाली करें
+    } else {
+        alert("सम्राट, पहले अपनी जीत लिखें!");
+    }
 
+        
 // अपडेट करने का ऑटोमैटिक लॉजिक
 document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4) + "%";
         
