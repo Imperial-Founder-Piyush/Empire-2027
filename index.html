@@ -27,7 +27,30 @@
     animation: pulse 2s infinite;
 }
         
-    </style>
+    </style>/* बटन और इनपुट पर शाही चमक */
+#victory-input:focus {
+    border-color: gold !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    outline: none;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #ffd700, #ffae00) !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transition: 0.3s;
+}
+
+.reset-btn {
+    background: transparent;
+    color: #ff4d4d;
+    border: 1px solid #ff4d4d;
+    margin-top: 20px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+        
         
         
     </head>
@@ -79,6 +102,8 @@ function logVictory() {
         localStorage.setItem('imperial_logs', JSON.stringify(victories));
         input.value = ""; 
         displayVictories(); 
+        
+        
     } else {
         alert("सम्राट, पहले अपनी जीत लिखें!");
     }
@@ -89,11 +114,12 @@ function displayVictories() {
     var list = document.getElementById('victory-list');
     var victories = JSON.parse(localStorage.getItem('imperial_logs')) || [];
     
-    list.innerHTML = '<h3 style="color: gold; border-bottom: 1px solid #333; padding-bottom: 5px;">Imperial Victory Log</h3>';
-    
-    victories.reverse().forEach(function(item) {
-        var div = document.createElement('div');
-              div.style.background = "rgba(255, 215, 0, 0.1)";
+    if (list) {
+        list.innerHTML = '<h3 style="color: gold; border-bottom: 1px solid #333; padding-bottom: 5px;">Imperial Victory Log</h3>';
+        
+        victories.reverse().forEach(function(item) {
+            var div = document.createElement('div');
+            div.style.background = "rgba(255, 215, 0, 0.1)";
             div.style.padding = "10px";
             div.style.margin = "10px 0";
             div.style.borderLeft = "5px solid gold";
@@ -102,6 +128,17 @@ function displayVictories() {
             div.innerHTML = "<small style='color: gray;'>[" + item.time + "]</small><br><strong>> </strong>" + item.text;
             list.appendChild(div);
         });
+    }
+}
+
+// 4. साम्राज्य की याददाश्त साफ़ करने का फंक्शन
+function clearImperialLogs() {
+    if (confirm("सम्राट, क्या आप वाकई अपना सारा इतिहास मिटाना चाहते हैं?")) {
+        localStorage.removeItem('imperial_logs');
+        displayVictories();
+    }
+}
+        
 document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4) + "%";
         
         var targetDate = new Date("Dec 31, 2027 23:59:59").getTime();
