@@ -62,7 +62,13 @@
         
             
             <div class="stats">
-                <div>TARGET: ₹10,000 CR</div>
+                <div>TARGET: ₹10,000 CR</div><div class="terminal" style="margin-top: 20px; border: 2px dashed #ff4444; background: rgba(255, 0, 0, 0.05);">
+    <h4 style="color: #ff4444; text-align: center; margin-bottom: 10px; letter-spacing: 1.5px;">COUNTDOWN TO ₹10,000 CR DOMINANCE (JAN 1, 2027)</h4>
+    <div id="countdown" style="color: white; font-size: 24px; text-align: center; font-family: 'Courier New', monospace; font-weight: bold; text-shadow: 0 0 10px #ff4444;">
+        00d : 00h : 00m : 00s
+    </div>
+                </div>
+                
                 <div>CURRENT: ₹14.72 CR</div>
             </div>
 
@@ -259,9 +265,24 @@ document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4)
                 },
                 plugins: { legend: { labels: { color: 'gold' } } }
             }
-        });
-    });
+                }); // Chart end
+    }); // Window addEventListener end
+
+    // Countdown Logic - Separate from the loader to ensure speed
+    const targetDate = new Date("January 1, 2027 00:00:00").getTime();
+    setInterval(function() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML = 
+            days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
+    }, 1000);
 </script>
+        
         
         
     <div class="footer">
