@@ -296,6 +296,53 @@ document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4)
                 AUTHENTICATED BY IMPERIAL SEAL: 5ABCD4E54871ACD6 | NO EXTERNAL ACCESS GRANTED
             </div>
         </div>
-    </body>
+    </body><script>
+    window.addEventListener('load', function() {
+        // 1. COUNTDOWN LOGIC
+        const targetDate = new Date("January 1, 2027 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // यह लाइन "countdown" ID वाले डिब्बे में समय भरेगी
+            const timerDisplay = document.getElementById("countdown");
+            if(timerDisplay) {
+                timerDisplay.innerHTML = days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
+            }
+        }, 1000);
+
+        // 2. CHART LOGIC (पुराना वाला ही रहेगा)
+        const ctx = document.getElementById('wealthChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mar 2026', 'Jun 2026', 'Sep 2026', 'Dec 2026', 'Jan 2027'],
+                datasets: [{
+                    label: 'Empire Growth (Cr)',
+                    data: [14.72, 150, 1200, 5500, 10000],
+                    borderColor: '#ffd700',
+                    backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                    borderWidth: 4,
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, ticks: { color: 'gold' } },
+                    x: { ticks: { color: 'gold' } }
+                },
+                plugins: { legend: { labels: { color: 'gold' } } }
+            }
+        });
+    });
+    </script>
+        
     </html>
     
