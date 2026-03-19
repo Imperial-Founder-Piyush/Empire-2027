@@ -219,69 +219,68 @@ document.querySelector('.progress-bar').style.width = progressPercent.toFixed(4)
         function displayLogs() {
             document.getElementById('logs').innerHTML = localStorage.getItem('empire_logs') || "No logs yet.";
 <script>
-    // यह आपके पुराने लॉग्स के लिए है
-    function saveNote() {
-        var note = document.getElementById('journalInput').value;
-        var time = new Date().toLocaleString();
-        if(note) {
-            var currentLogs = localStorage.getItem('empire_logs') || "";
-            var newLog = "<div><b>[" + time + "]:</b> " + note + "</div>" + currentLogs;
-            localStorage.setItem('empire_logs', newLog);
-            displayLogs();
-            document.getElementById('journalInput').value = "";
+    // विक्ट्री लॉग्स दिखाने का फंक्शन
+    function displayLogs() {
+        const logsContainer = document.getElementById('logs') || document.getElementById('victory-list');
+        if(logsContainer) {
+            logsContainer.innerHTML = localStorage.getItem('empire_logs') || "No victories logged yet.";
         }
     }
-    function displayLogs() {
-        document.getElementById('logs').innerHTML = localStorage.getItem('empire_logs') || "No victories logged yet.";
-    }
 
-    // चार्ट और लॉग्स दोनों को एक साथ लोड करने वाला 'Imperial' फंक्शन
+    // सब कुछ एक साथ लोड करने वाला 'Imperial' लॉजिक
     window.addEventListener('load', function() {
-        displayLogs(); // पहले लॉग्स दिखाओ
+        displayLogs();
         
-        const ctx = document.getElementById('wealthChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Mar 2026', 'Jun 2026', 'Sep 2026', 'Dec 2026', 'Jan 2027'],
-                datasets: [{
-                    label: 'Empire Growth (Cr)',
-                    data: [14.72, 150, 1200, 5500, 10000],
-                    borderColor: '#ffd700',
-                    backgroundColor: 'rgba(255, 215, 0, 0.2)',
-                    borderWidth: 4,
-                    tension: 0.4,
-                    fill: true,
-                    pointRadius: 6,
-                    pointBackgroundColor: '#fff'
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: { beginAtZero: true, ticks: { color: 'gold' }, grid: { color: '#333' } },
-                    x: { ticks: { color: 'gold' }, grid: { color: '#333' } }
-                },
-                plugins: { legend: { labels: { color: 'gold' } } }
+        // 1. COUNTDOWN MASTER LOGIC
+        const targetDate = new Date("January 1, 2027 00:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            const timerElement = document.getElementById("countdown");
+            if(timerElement) {
+                timerElement.innerHTML = days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
             }
-                }); // Chart end
-    }); // Window addEventListener end
+        }, 1000);
 
-    // Countdown Logic - Separate from the loader to ensure speed
-    const targetDate = new Date("January 1, 2027 00:00:00").getTime();
-    setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("countdown").innerHTML = 
-            days + "d : " + hours + "h : " + minutes + "m : " + seconds + "s";
-    }, 1000);
+        // 2. EMPIRE CHART LOGIC
+        const chartCanvas = document.getElementById('wealthChart');
+        if(chartCanvas) {
+            const ctx = chartCanvas.getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Mar 2026', 'Jun 2026', 'Sep 2026', 'Dec 2026', 'Jan 2027'],
+                    datasets: [{
+                        label: 'Empire Growth (Cr)',
+                        data: [14.72, 150, 1200, 5500, 10000],
+                        borderColor: '#ffd700',
+                        backgroundColor: 'rgba(255, 215, 0, 0.2)',
+                        borderWidth: 4,
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#fff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: 'gold' }, grid: { color: '#333' } },
+                        x: { ticks: { color: 'gold' }, grid: { color: '#333' } }
+                    },
+                    plugins: { legend: { labels: { color: 'gold' } } }
+                }
+            });
+        }
+    });
 </script>
+        
         
         
         
