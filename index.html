@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piyush Samrat | Imperial Services</title>
+    <title>Piyush Samrat | Imperial Solutions</title>
     <style>
         body { background-color: #000; color: #ffcc00; font-family: 'Courier New', monospace; text-align: center; margin: 0; padding: 20px; }
-        .box { border: 2px solid #ffcc00; padding: 25px; border-radius: 20px; max-width: 650px; margin: auto; background: #0a0a0a; box-shadow: 0 0 20px #ffcc0033; }
+        .box { border: 2px solid #ffcc00; padding: 25px; border-radius: 20px; max-width: 650px; margin: auto; background: #0a0a0a; box-shadow: 0 0 30px #ffcc0044; }
         h1 { text-shadow: 2px 2px #555; font-size: 26px; letter-spacing: 2px; }
-        .service-card { border: 1px solid #444; margin: 20px 0; padding: 20px; border-radius: 12px; background: #111; transition: 0.3s; }
-        .service-card:hover { border-color: #ffcc00; transform: scale(1.02); }
+        .offer-banner { background: #ffcc00; color: #000; font-weight: bold; padding: 10px; border-radius: 5px; margin: 15px 0; animation: blink 1.5s infinite; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.6; } 100% { opacity: 1; } }
+        .service-card { border: 1px solid #444; margin: 20px 0; padding: 20px; border-radius: 12px; background: #111; transition: 0.3s; text-align: left; }
+        .service-card:hover { border-color: #ffcc00; transform: translateY(-5px); }
         .price { color: #00ff00; font-weight: bold; font-size: 20px; }
-        .portfolio-tag { display: inline-block; background: #222; padding: 5px 10px; border-radius: 5px; font-size: 12px; margin-top: 10px; border: 1px solid #ffcc00; }
-        .btn { background-color: #ffcc00; color: #000; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px; box-shadow: 0 4px 10px rgba(255, 204, 0, 0.4); }
-        hr { border: 0; border-top: 1px solid #ffcc00; margin: 30px 0; opacity: 0.5; }
+        .old-price { color: #ff4444; text-decoration: line-through; font-size: 14px; margin-right: 10px; }
+        .btn { background-color: #ffcc00; color: #000; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 8px; text-decoration: none; display: inline-block; margin-top: 20px; font-size: 18px; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.5); }
+        hr { border: 0; border-top: 1px solid #ffcc00; margin: 30px 0; opacity: 0.4; }
     </style>
 </head>
 <body>
     <div class="box">
         <h1>PIYUSH SAMRAT: REVENUE PHASE 1</h1>
-        <p>MISSION: ₹10,000 CR | STATUS: <span style="color: #00ff00;">GROWING</span></p>
+        <p>MISSION: ₹10,000 CR | <span style="color: #00ff00;">STATUS: DOMINATING</span></p>
         
-        <hr>
-        <h3>PREMIUM SERVICES</h3>
-        
+        <div class="offer-banner">🔥 LIMITED TIME: 50% OFF FOR FIRST 5 CLIENTS! 🔥</div>
+
         <div class="service-card">
-            <h4>1. Business Mini-Website</h4>
-            <p>अपनी दुकान को 24 घंटे ऑनलाइन रखें।</p>
-            <p class="price">₹1,999</p>
-            <span class="portfolio-tag">Project Code: IMP-WEB-01</span>
+            <h4>🚀 Business Mini-Website</h4>
+            <p>अपनी दुकान को डिजिटल बनाएं और 24/7 ग्राहक पाएं।</p>
+            <span class="old-price">₹3,999</span><span class="price">₹1,999</span>
         </div>
 
         <div class="service-card">
-            <h4>2. Personal Brand Dashboard</h4>
-            <p>अपना पोर्टफोलियो और मिशन दुनिया को दिखाएं।</p>
-            <p class="price">₹2,999</p>
-            <span class="portfolio-tag">Project Code: IMP-DASH-02</span>
+            <h4>📊 Imperial Data Dashboard</h4>
+            <p>अपने बिजनेस का हिसाब-किताब और प्रोग्रेस ट्रैक करें।</p>
+            <span class="old-price">₹5,999</span><span class="price">₹2,999</span>
         </div>
 
         <hr>
-        <a href="https://wa.me/916388015451" class="btn">HIRE THE EMPEROR</a>
+        <p>✅ Free Maintenance | ✅ 24/7 Support</p>
+        <a href="https://wa.me/916388015451" class="btn">CLAIM YOUR OFFER NOW</a>
         <p style="font-size: 11px; margin-top: 25px; color: #666;">Secured by Imperial Seal & AES-1024 Neural-Links</p>
     </div>
 </body>
