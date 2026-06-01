@@ -109,7 +109,7 @@
         <h2>Request Private Audit & Strategic Acquisition</h2>
         <p>Fortune 500 tech scouts and institutional buyers can initialize verification protocols securely below.</p>
         
-        <form id="audit-form" onsubmit="handleFormSubmit(event)">
+        <form id="audit-form" onsubmit="handleMailtoSubmit(event)">
             <div class="form-group">
                 <label for="corporate-email">Corporate Email Address:</label>
                 <input type="email" id="corporate-email" placeholder="name@company.com" required>
@@ -121,9 +121,9 @@
             <div class="form-group">
                 <label for="intent-type">Strategic Intent:</label>
                 <select id="intent-type">
-                    <option value="acquisition">Full Asset Purchase / Acquisition</option>
-                    <option value="audit">Private Technical Audit</option>
-                    <option value="partnership">Institutional Partnership</option>
+                    <option value="Full Asset Purchase / Acquisition">Full Asset Purchase / Acquisition</option>
+                    <option value="Private Technical Audit">Private Technical Audit</option>
+                    <option value="Institutional Partnership">Institutional Partnership</option>
                 </select>
             </div>
             <button type="submit" class="btn">Request Private Audit</button>
@@ -133,7 +133,6 @@
 </div>
 
 <script>
-    // Terminal Dynamic Simulation Functions
     function runTerminalCheck() {
         const screen = document.getElementById('terminal-screen');
         screen.innerHTML = '';
@@ -160,22 +159,39 @@
         }, 800);
     }
 
-    // Form Interactivity Demonstration
-    function handleFormSubmit(event) {
+    function handleMailtoSubmit(event) {
         event.preventDefault();
         
-        const email = document.getElementById('corporate-email').value;
-        const company = document.getElementById('company-name').value;
+        // आपका असली ईमेल यहाँ सुरक्षित रूप से जोड़ दिया गया है
+        const myEmail = "shy.iam6336@gmail.com"; 
+        
+        const clientEmail = document.getElementById('corporate-email').value;
+        const companyName = document.getElementById('company-name').value;
+        const intentType = document.getElementById('intent-type').value;
         const statusMsg = document.getElementById('form-status');
         
-        statusMsg.innerHTML = "Initializing Corporate Security Verification...";
+        statusMsg.innerHTML = "Opening Secure Mail Client...";
         statusMsg.className = "status-msg";
 
+        const subject = encodeURIComponent("Imperial Nexus AI - Strategic Audit Request");
+        
+        const body = encodeURIComponent(
+            "Hello Sovereign Team,\n\n" +
+            "I would like to request a private audit/strategic action. Here are the credentials:\n\n" +
+            "- Corporate Email: " + clientEmail + "\n" +
+            "- Institution Name: " + companyName + "\n" +
+            "- Strategic Intent: " + intentType + "\n\n" +
+            "Please initialize verification protocols.\n" +
+            "Best Regards,\n" +
+            companyName + " Team"
+        );
+
         setTimeout(() => {
-            statusMsg.innerHTML = "Sovereign Authentication Successful. Audit Log Encrypted. Data Saved Securely.";
+            window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
+            statusMsg.innerHTML = "Mail Client Triggered successfully. Please press send in your email app.";
             statusMsg.className = "status-msg success";
             document.getElementById('audit-form').reset();
-        }, 1500);
+        }, 1000);
     }
 </script>
 
