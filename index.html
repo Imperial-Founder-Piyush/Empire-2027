@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imperial Nexus AI - Automated Sovereign Networks</title>
+    <title>Imperial Nexus AI - The Sovereign AI</title>
     <style>
-        *, *::before, *::after { box-sizing: border-box; }
         body {
             background-color: #0d0d0d;
             color: #f2f2f2;
@@ -39,7 +38,7 @@
             padding: 15px;
             font-family: 'Courier New', monospace;
             color: #00ff00;
-            height: 180px;
+            height: 200px;
             overflow-y: auto;
             margin-bottom: 15px;
             border-radius: 4px;
@@ -62,81 +61,74 @@
             color: #000;
             box-shadow: 0 0 15px #d4af37;
         }
-        .btn-download {
-            background-color: #00ff00;
-            color: #000;
-            margin-top: 15px;
-            display: none;
+        .form-group {
+            margin-bottom: 20px;
         }
-        textarea, input[type="text"] {
+        label {
+            display: block;
+            color: #d4af37;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="email"], input[type="text"], select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background-color: #262626;
             border: 1px solid #d4af37;
             color: #fff;
-            font-family: monospace;
-            margin-bottom: 15px;
+            box-sizing: border-box;
             border-radius: 4px;
         }
-        .result-box {
-            background-color: #000;
-            border: 1px dashed #ff0000;
-            padding: 15px;
-            color: #ff3333;
-            display: none;
-            margin-top: 15px;
-            font-family: monospace;
-        }
-        .payment-lock {
-            background-color: #222;
-            border: 2px dashed #d4af37;
-            padding: 20px;
+        .status-msg {
             text-align: center;
+            font-weight: bold;
             margin-top: 15px;
-            display: none;
         }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>Imperial Nexus AI</h1>
-    <h3>Sovereign AI Infrastructure & Automated Audits</h3>
+    <h3>The Sovereign AI Infrastructure for Global Commerce</h3>
 
     <div class="section">
-        <h2>Sovereign Sandbox Terminal</h2>
-        <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Global Diagnostics...]</div>
-        <button class="btn" onclick="runTerminalCheck()">Run Core System Check</button>
+        <h2>Nexus-Core V1.0</h2>
+        <p>Decentralized multi-layer liquidity automation and secure digital workflow orchestration. Designed exclusively for institutional-grade acquisition and sovereign corporate scales.</p>
     </div>
 
     <div class="section">
-        <h2>Autonomous AI Code & Vulnerability Auditor</h2>
-        <p>डेवलपर्स और कंपनियां नीचे अपना कोड पेस्ट करके उसकी सुरक्षा (Vulnerabilities) तुरंत स्कैन कर सकते हैं।</p>
+        <h2>Sovereign Sandbox Terminal</h2>
+        <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Imperial Deployment...]</div>
+        <button class="btn" onclick="runTerminalCheck()">Run System Check</button>
+    </div>
+
+    <div class="section">
+        <h2>Request Private Audit & Strategic Acquisition</h2>
+        <p>Fortune 500 tech scouts and institutional buyers can initialize verification protocols securely below.</p>
         
-        <textarea id="user-code" rows="6" placeholder="// Paste code here for instant AI analysis..."></textarea>
-        <button class="btn" onclick="analyzeCode()">Analyze Vulnerabilities</button>
-
-        <div id="analysis-loading" style="color: #00ff00; text-align: center; margin-top: 15px; display: none;">
-            [Processing Layer 1 to Layer 4 Network Protocols... Please wait...]
-        </div>
-
-        <div id="analysis-result" class="result-box">
-            <strong>[CRITICAL ALERT] 3 Vulnerabilities Found in your Infrastructure!</strong><br>
-            > Threat Level: HIGH (Potential Data Leak Exploit)<br>
-            > Breach Risk: Core Liquidity Gateway is unencrypted.<br><br>
-            <span style="color: #fff;">To unlock the full AI patch code and secure your network, access the protocol below:</span>
-        </div>
-
-        <div id="pay-lock" class="payment-lock">
-            <h3 style="margin-top: 0;">🔒 Security Patch Locked</h3>
-            <p>इस सुरक्षा खतरे को ठीक करने का कोड (Patch Blueprint) तुरंत डाउनलोड करने के लिए <strong>$1 (या ₹80 मूल्य का कोई भी Digital Gift Card Code)</strong> नीचे दर्ज करें।</p>
-            <input type="text" id="gift-code" placeholder="Enter Amazon / Google Play Gift Card Pin / Crypto Hash">
-            <button class="btn" onclick="submitPayment()">Verify & Generate Patch</button>
-            <div id="pay-status" style="margin-top:10px; color: #00ff00;"></div>
-            
-            <!-- असली पीडीएफ डाउनलोड बटन जो पेमेंट के बाद खुलेगा -->
-            <button class="btn btn-download" id="download-btn" onclick="downloadPatchPDF()">📥 Download Official Security Patch PDF</button>
-        </div>
+        <form id="audit-form" onsubmit="handleMailtoSubmit(event)">
+            <div class="form-group">
+                <label for="corporate-email">Corporate Email Address:</label>
+                <input type="email" id="corporate-email" placeholder="name@company.com" required>
+            </div>
+            <div class="form-group">
+                <label for="company-name">Institution / Entity Name:</label>
+                <input type="text" id="company-name" placeholder="e.g., Walmart / Visa / Google" required>
+            </div>
+            <div class="form-group">
+                <label for="intent-type">Strategic Intent:</label>
+                <select id="intent-type">
+                    <option value="Full Asset Purchase / Acquisition">Full Asset Purchase / Acquisition</option>
+                    <option value="Private Technical Audit">Private Technical Audit</option>
+                    <option value="Institutional Partnership">Institutional Partnership</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Request Private Audit</button>
+        </form>
+        <div id="form-status" class="status-msg"></div>
     </div>
 </div>
 
@@ -144,12 +136,17 @@
     function runTerminalCheck() {
         const screen = document.getElementById('terminal-screen');
         screen.innerHTML = '';
+        
         const logs = [
             "> Initializing Imperial Nexus Core Architecture...",
             "> Booting secure decentralized multi-layer sub-systems...",
+            "> Authenticating API Gateway: POST /v1/imperial-nexus/execute...",
+            "> Verifying cryptographic commercial infrastructure blocks...",
+            "> Scanning network for high-fidelity endpoint integrations...",
             "> ERROR: 0 anomalies found. Liquidity pathways optimal.",
             "> [SUCCESS] Imperial Nexus AI is running at 100% Sovereign Capacity."
         ];
+
         let i = 0;
         const interval = setInterval(() => {
             if (i < logs.length) {
@@ -159,60 +156,44 @@
             } else {
                 clearInterval(interval);
             }
-        }, 600);
+        }, 800);
     }
 
-    function analyzeCode() {
-        if(!document.getElementById('user-code').value.trim()) {
-            alert("कृपया पहले बॉक्स में कोई कोड या टेक्स्ट डालें भाई!");
-            return;
-        }
-        document.getElementById('analysis-loading').style.display = 'block';
-        document.getElementById('analysis-result').style.display = 'none';
-        document.getElementById('pay-lock').style.display = 'none';
-        setTimeout(() => {
-            document.getElementById('analysis-loading').style.display = 'none';
-            document.getElementById('analysis-result').style.display = 'block';
-            document.getElementById('pay-lock').style.display = 'block';
-        }, 2500);
-    }
-
-    function submitPayment() {
-        const giftCode = document.getElementById('gift-code').value;
-        if(!giftCode.trim()) {
-            alert("कृपया पहले वेरिफिकेशन पिन या कोड डालें भाई!");
-            return;
-        }
+    function handleMailtoSubmit(event) {
+        event.preventDefault();
         
-        const payStatus = document.getElementById('pay-status');
-        payStatus.innerHTML = "[Verifying Code on Decentralized Ledger...]";
-        payStatus.style.color = "#d4af37";
-
-        const myEmail = "shy.iam6336@gmail.com";
-        const subject = encodeURIComponent("Imperial Nexus - Paid Audit Unlock Request");
-        const body = encodeURIComponent("User submitted Gift/Payment Pin: " + giftCode);
+        // आपका असली ईमेल यहाँ सुरक्षित रूप से जोड़ दिया गया है
+        const myEmail = "shy.iam6336@gmail.com"; 
         
+        const clientEmail = document.getElementById('corporate-email').value;
+        const companyName = document.getElementById('company-name').value;
+        const intentType = document.getElementById('intent-type').value;
+        const statusMsg = document.getElementById('form-status');
+        
+        statusMsg.innerHTML = "Opening Secure Mail Client...";
+        statusMsg.className = "status-msg";
+
+        const subject = encodeURIComponent("Imperial Nexus AI - Strategic Audit Request");
+        
+        const body = encodeURIComponent(
+            "Hello Sovereign Team,\n\n" +
+            "I would like to request a private audit/strategic action. Here are the credentials:\n\n" +
+            "- Corporate Email: " + clientEmail + "\n" +
+            "- Institution Name: " + companyName + "\n" +
+            "- Strategic Intent: " + intentType + "\n\n" +
+            "Please initialize verification protocols.\n" +
+            "Best Regards,\n" +
+            companyName + " Team"
+        );
+
         setTimeout(() => {
-            // १. ईमेल भेजने का प्रयास करेगा
             window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-            
-            // २. यूजर को धोखा न मिले, इसलिए डाउनलोड बटन तुरंत खोल देगा
-            payStatus.innerHTML = "[SUCCESS] Code verified. Security patch compiled below.";
-            payStatus.style.color = "#00ff00";
-            document.getElementById('download-btn').style.display = 'block';
-        }, 1500);
-    }
-
-    function downloadPatchPDF() {
-        // यहाँ आपकी असली जनरेट की हुई पीडीएफ की सीक्रेट लिंक है
-        const link = document.createElement('a');
-        link.href = 'https://raw.githubusercontent.com/Imperial-Founder-Piyush/Empire-2027/main/patch_blueprint.pdf'; 
-        link.download = 'Imperial_Nexus_Security_Patch.pdf';
-        link.target = '_blank';
-        link.click();
+            statusMsg.innerHTML = "Mail Client Triggered successfully. Please press send in your email app.";
+            statusMsg.className = "status-msg success";
+            document.getElementById('audit-form').reset();
+        }, 1000);
     }
 </script>
 
 </body>
-                </html>
-                
+</html>
