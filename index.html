@@ -190,11 +190,9 @@
             if (logIndex < logs.length) {
                 let currentLine = logs[logIndex];
                 let charIndex = 0;
-                // नई लाइन के लिए एक नया div या span बनाएं
                 let lineElem = document.createElement('div');
                 screen.appendChild(lineElem);
 
-                // टाइपराइटर इफ़ेक्ट से एक-एक अक्षर प्रिंट करना
                 let typer = setInterval(() => {
                     if (charIndex < currentLine.length) {
                         lineElem.innerHTML += currentLine.charAt(charIndex);
@@ -203,10 +201,9 @@
                     } else {
                         clearInterval(typer);
                         logIndex++;
-                        // अगली लाइन प्रिंट करने से पहले थोड़ा सा पॉज़ (300ms)
                         setTimeout(typeLog, 300);
                     }
-                }, 15); // अक्षर टाइप होने की स्पीड
+                }, 15);
             } else {
                 // सब पूरा होने पर बटन वापस चालू करें
                 btn.disabled = false;
