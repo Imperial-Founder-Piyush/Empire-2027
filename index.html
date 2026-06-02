@@ -1,65 +1,85 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Imperial Nexus AI - The Sovereign AI</title>
+    <title>Imperial Nexus AI - The Sovereign AI Infrastructure</title>
     <style>
         body {
             background-color: #0d0d0d;
             color: #f2f2f2;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
             line-height: 1.6;
         }
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 20px auto;
             border: 2px solid #d4af37;
             padding: 30px;
             background-color: #1a1a1a;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            border-radius: 8px;
         }
         h1, h2, h3 {
             color: #d4af37;
             text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
+            margin-top: 0;
+        }
+        h3 {
+            font-size: 1rem;
+            color: #bfa13b;
+            margin-bottom: 30px;
         }
         .section {
             margin-bottom: 40px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
+            border-bottom: 1px solid #2d2d2d;
+            padding-bottom: 25px;
+        }
+        .section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
         }
         .terminal {
             background-color: #000;
             border: 1px solid #d4af37;
-            padding: 15px;
+            padding: 20px;
             font-family: 'Courier New', monospace;
             color: #00ff00;
-            height: 200px;
+            height: 220px;
             overflow-y: auto;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 4px;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
         }
         .btn {
             background-color: #d4af37;
             color: #000;
-            border: none;
-            padding: 12px 24px;
-            font-size: 16px;
+            border: 1px solid #d4af37;
+            padding: 14px 28px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
             display: block;
             margin: 0 auto;
             text-transform: uppercase;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            letter-spacing: 1px;
         }
-        .btn:hover {
-            background-color: #fff;
-            color: #000;
+        .btn:hover:not(:disabled) {
+            background-color: transparent;
+            color: #d4af37;
             box-shadow: 0 0 15px #d4af37;
+        }
+        .btn:disabled {
+            background-color: #444;
+            border-color: #555;
+            color: #888;
+            cursor: not-allowed;
         }
         .form-group {
             margin-bottom: 20px;
@@ -67,74 +87,91 @@
         label {
             display: block;
             color: #d4af37;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
         input[type="email"], input[type="text"], select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #262626;
-            border: 1px solid #d4af37;
+            border: 1px solid #3d3d3d;
             color: #fff;
             box-sizing: border-box;
             border-radius: 4px;
+            transition: border 0.3s;
+        }
+        input[type="email"]:focus, input[type="text"]:focus, select:focus {
+            border-color: #d4af37;
+            outline: none;
         }
         .status-msg {
             text-align: center;
             font-weight: bold;
             margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
         }
-        .success { color: #00ff00; }
-        .error { color: #ff0000; }
+        .success { color: #00ff00; background-color: rgba(0, 255, 0, 0.05); }
+        .error { color: #ff0000; background-color: rgba(255, 0, 0, 0.05); }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Imperial Nexus AI</h1>
-    <h3>The Sovereign AI Infrastructure for Global Commerce</h3>
+    <header>
+        <h1>Imperial Nexus AI</h1>
+        <h3>The Sovereign AI Infrastructure for Global Commerce</h3>
+    </header>
 
-    <div class="section">
-        <h2>Nexus-Core V1.0</h2>
-        <p>Decentralized multi-layer liquidity automation and secure digital workflow orchestration. Designed exclusively for institutional-grade acquisition and sovereign corporate scales.</p>
-    </div>
+    <main>
+        <section class="section">
+            <h2>Nexus-Core V1.0</h2>
+            <p style="text-align: center; color: #b3b3b3;">Decentralized multi-layer liquidity automation and secure digital workflow orchestration. Designed exclusively for institutional-grade acquisition and sovereign corporate scales.</p>
+        </section>
 
-    <div class="section">
-        <h2>Sovereign Sandbox Terminal</h2>
-        <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Imperial Deployment...]</div>
-        <button class="btn" onclick="runTerminalCheck()">Run System Check</button>
-    </div>
+        <section class="section">
+            <h2>Sovereign Sandbox Terminal</h2>
+            <div class="terminal" id="terminal-screen">[System Status: Idle. Ready for Imperial Deployment...]</div>
+            <button class="btn" id="check-btn" onclick="runTerminalCheck()">Run System Check</button>
+        </section>
 
-    <div class="section">
-        <h2>Request Private Audit & Strategic Acquisition</h2>
-        <p>Fortune 500 tech scouts and institutional buyers can initialize verification protocols securely below.</p>
-        
-        <form id="audit-form" onsubmit="handleMailtoSubmit(event)">
-            <div class="form-group">
-                <label for="corporate-email">Corporate Email Address:</label>
-                <input type="email" id="corporate-email" placeholder="name@company.com" required>
-            </div>
-            <div class="form-group">
-                <label for="company-name">Institution / Entity Name:</label>
-                <input type="text" id="company-name" placeholder="e.g., Walmart / Visa / Google" required>
-            </div>
-            <div class="form-group">
-                <label for="intent-type">Strategic Intent:</label>
-                <select id="intent-type">
-                    <option value="Full Asset Purchase / Acquisition">Full Asset Purchase / Acquisition</option>
-                    <option value="Private Technical Audit">Private Technical Audit</option>
-                    <option value="Institutional Partnership">Institutional Partnership</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Request Private Audit</button>
-        </form>
-        <div id="form-status" class="status-msg"></div>
-    </div>
+        <section class="section">
+            <h2>Request Private Audit & Strategic Acquisition</h2>
+            <p style="text-align: center; color: #b3b3b3; margin-bottom: 25px;">Fortune 500 tech scouts and institutional buyers can initialize verification protocols securely below.</p>
+            
+            <form id="audit-form" onsubmit="handleMailtoSubmit(event)">
+                <div class="form-group">
+                    <label for="corporate-email">Corporate Email Address:</label>
+                    <input type="email" id="corporate-email" placeholder="name@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="company-name">Institution / Entity Name:</label>
+                    <input type="text" id="company-name" placeholder="e.g., Walmart / Visa / Google" required>
+                </div>
+                <div class="form-group">
+                    <label for="intent-type">Strategic Intent:</label>
+                    <select id="intent-type">
+                        <option value="Full Asset Purchase / Acquisition">Full Asset Purchase / Acquisition</option>
+                        <option value="Private Technical Audit">Private Technical Audit</option>
+                        <option value="Institutional Partnership">Institutional Partnership</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Request Private Audit</button>
+            </form>
+            <div id="form-status" class="status-msg"></div>
+        </section>
+    </main>
 </div>
 
 <script>
     function runTerminalCheck() {
         const screen = document.getElementById('terminal-screen');
+        const btn = document.getElementById('check-btn');
+        
+        // बटन डिसेबल करें और स्क्रीन साफ़ करें
+        btn.disabled = true;
+        btn.innerText = "Executing Protocol...";
         screen.innerHTML = '';
         
         const logs = [
@@ -147,33 +184,52 @@
             "> [SUCCESS] Imperial Nexus AI is running at 100% Sovereign Capacity."
         ];
 
-        let i = 0;
-        const interval = setInterval(() => {
-            if (i < logs.length) {
-                screen.innerHTML += logs[i] + "<br>";
-                screen.scrollTop = screen.scrollHeight;
-                i++;
+        let logIndex = 0;
+
+        function typeLog() {
+            if (logIndex < logs.length) {
+                let currentLine = logs[logIndex];
+                let charIndex = 0;
+                // नई लाइन के लिए एक नया div या span बनाएं
+                let lineElem = document.createElement('div');
+                screen.appendChild(lineElem);
+
+                // टाइपराइटर इफ़ेक्ट से एक-एक अक्षर प्रिंट करना
+                let typer = setInterval(() => {
+                    if (charIndex < currentLine.length) {
+                        lineElem.innerHTML += currentLine.charAt(charIndex);
+                        charIndex++;
+                        screen.scrollTop = screen.scrollHeight;
+                    } else {
+                        clearInterval(typer);
+                        logIndex++;
+                        // अगली लाइन प्रिंट करने से पहले थोड़ा सा पॉज़ (300ms)
+                        setTimeout(typeLog, 300);
+                    }
+                }, 15); // अक्षर टाइप होने की स्पीड
             } else {
-                clearInterval(interval);
+                // सब पूरा होने पर बटन वापस चालू करें
+                btn.disabled = false;
+                btn.innerText = "Run System Check";
             }
-        }, 800);
+        }
+
+        typeLog();
     }
 
     function handleMailtoSubmit(event) {
         event.preventDefault();
         
-        // आपका असली ईमेल यहाँ सुरक्षित रूप से जोड़ दिया गया है
         const myEmail = "shy.iam6336@gmail.com"; 
-        
         const clientEmail = document.getElementById('corporate-email').value;
         const companyName = document.getElementById('company-name').value;
         const intentType = document.getElementById('intent-type').value;
         const statusMsg = document.getElementById('form-status');
         
         statusMsg.innerHTML = "Opening Secure Mail Client...";
-        statusMsg.className = "status-msg";
+        statusMsg.className = "status-msg success";
 
-        const subject = encodeURIComponent("Imperial Nexus AI - Strategic Audit Request");
+        const subject = encodeURIComponent(`Imperial Nexus AI - Strategic Audit Request [${companyName}]`);
         
         const body = encodeURIComponent(
             "Hello Sovereign Team,\n\n" +
@@ -181,17 +237,16 @@
             "- Corporate Email: " + clientEmail + "\n" +
             "- Institution Name: " + companyName + "\n" +
             "- Strategic Intent: " + intentType + "\n\n" +
-            "Please initialize verification protocols.\n" +
+            "Please initialize verification protocols.\n\n" +
             "Best Regards,\n" +
             companyName + " Team"
         );
 
         setTimeout(() => {
             window.location.href = `mailto:${myEmail}?subject=${subject}&body=${body}`;
-            statusMsg.innerHTML = "Mail Client Triggered successfully. Please press send in your email app.";
-            statusMsg.className = "status-msg success";
+            statusMsg.innerHTML = "✓ Mail Client Triggered. Please press SEND in your email app to finish.";
             document.getElementById('audit-form').reset();
-        }, 1000);
+        }, 1200);
     }
 </script>
 
